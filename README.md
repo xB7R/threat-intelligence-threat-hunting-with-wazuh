@@ -81,7 +81,7 @@ The project simulates real-world SOC operations including threat detection, inci
 
 # SOC Architecture
 
-![SOC Architecture](screenshots/soc-architecture.png)
+![SOC Architecture](images/soc-architecture.png)
 
 ---
 
@@ -107,39 +107,23 @@ Continuous Monitoring
 
 # Task 1 – Wazuh Configuration & Event Validation
 
-## Windows Server 2022 Integration
-
-- Wazuh Agent Installed
-- Security Events Monitored
-- Microsoft Defender Events Collected
-
-![Windows Agent](screenshots/windows-agent.png)
-
----
-
-## Bodhi Linux Integration
-
-- Wazuh Agent Installed
-- Authentication Logs Collected
-- System Activity Monitored
-
-![Bodhi Agent](screenshots/bodhi-agent.png)
-
----
-
-## pfSense Firewall Integration
-
-- Syslog Forwarding Enabled
-- Firewall Logs Collected
-- Network Events Forwarded to Wazuh
-
-![pfSense Integration](screenshots/pfsense-syslog.png)
-
----
-
 ## Wazuh Dashboard
 
-![Wazuh Dashboard](screenshots/wazuh-dashboard.png)
+Centralized monitoring of security events and system activity.
+
+![Wazuh Dashboard](images/wazuh-dashboard.png)
+
+### Connected Agents
+
+Windows Server 2022 and Bodhi Linux successfully connected to Wazuh.
+
+![Connected Agents](images/agents-connected.png)
+
+### pfSense Firewall Integration
+
+Firewall logs successfully forwarded to Wazuh using Syslog.
+
+![pfSense Integration](images/pfsense-syslog.png)
 
 ---
 
@@ -147,37 +131,27 @@ Continuous Monitoring
 
 ## Privilege Escalation Detection
 
-Custom Wazuh rule detected modifications to the Windows Administrators group.
+Custom Wazuh rules detected unauthorized privilege escalation attempts.
 
-**Rule ID:** `100601`
+**Rule IDs:** `100101`, `100102`
 
-![Privilege Escalation Alert](screenshots/privilege-escalation-alert.png)
+![Privilege Escalation Alert](images/privilege-escalation-alert.png)
 
----
+### Active Response Validation
 
-## Active Response Validation
+Suspicious account automatically disabled after detection.
 
-The suspicious account was automatically disabled after detection.
-
-![Account Disabled](screenshots/account-disabled.png)
+![Account Disabled](images/account-disabled.png)
 
 ---
 
 # Task 3 – SOAR Automation with Shuffle
 
-## Shuffle Playbook
+## Shuffle Workflow
 
-The SOAR workflow receives alerts from Wazuh and performs automated response actions.
+Automated incident response workflow integrating Wazuh alerts with response actions.
 
-![Shuffle Playbook](screenshots/shuffle-playbook.png)
-
----
-
-## Workflow Execution
-
-Successful execution of the automated response workflow.
-
-![Shuffle Execution](screenshots/shuffle-run-history.png)
+![Shuffle Workflow](images/shuffle-workflow.png)
 
 ---
 
@@ -185,74 +159,38 @@ Successful execution of the automated response workflow.
 
 ## VirusTotal Integration
 
-### Purpose
-
 File reputation analysis and malware validation.
 
-### Rule IDs
+**Rule IDs:**
 
 - 87105
 - 100092
 
-### Validation
-
-- EICAR test file detected
-- VirusTotal lookup performed
-- Threat removed automatically
-
-![VirusTotal Detection](screenshots/virustotal-detection.png)
+![VirusTotal Detection](images/virustotal-detection.png)
 
 ---
 
 ## AbuseIPDB Integration
 
-### Purpose
+IP reputation enrichment for suspicious network activity.
 
-IP reputation enrichment.
+**Rule ID:** `100004`
 
-### Rule ID
-
-- 100004
-
-### Validation
-
-- Suspicious IP detected
-- Reputation lookup completed
-- Confidence score returned
-
-![AbuseIPDB Enrichment](screenshots/abuseipdb-enrichment.png)
+![AbuseIPDB Enrichment](images/abuseipdb-enrichment.png)
 
 ---
 
 ## AlienVault OTX Integration
 
-### Purpose
-
 IOC and domain reputation analysis.
 
-### Rule IDs
+**Rule IDs:**
 
 - 100220
 - 100300
 - 100301
 
-### Validation
-
-- Suspicious domain detected
-- OTX lookup completed
-- Threat intelligence match identified
-
-![OTX Match](screenshots/otx-match.png)
-
----
-
-# Threat Intelligence Sources
-
-| Source | Purpose |
-|----------|----------|
-| VirusTotal | File Reputation Analysis |
-| AbuseIPDB | IP Reputation Analysis |
-| AlienVault OTX | IOC & Domain Intelligence |
+![AlienVault OTX Match](images/otx-match.png)
 
 ---
 
@@ -285,8 +223,8 @@ IOC and domain reputation analysis.
 
 ## XDR
 
-- Threat Detection
 - Endpoint Monitoring
+- Threat Detection
 - Active Response
 
 ## SOAR
@@ -312,23 +250,27 @@ IOC and domain reputation analysis.
 
 ---
 
-# Screenshots
+# Repository Structure
 
 ```text
-screenshots/
-├── soc-architecture.png
-├── wazuh-dashboard.png
-├── windows-agent.png
-├── bodhi-agent.png
-├── pfsense-syslog.png
-├── privilege-escalation-alert.png
-├── account-disabled.png
-├── shuffle-playbook.png
-├── shuffle-run-history.png
-├── virustotal-detection.png
-├── abuseipdb-enrichment.png
-├── otx-match.png
-└── project-summary.png
+wazuh-xdr-soar-threat-intelligence
+│
+├── README.md
+│
+├── images
+│   ├── soc-architecture.png
+│   ├── wazuh-dashboard.png
+│   ├── agents-connected.png
+│   ├── pfsense-syslog.png
+│   ├── privilege-escalation-alert.png
+│   ├── account-disabled.png
+│   ├── shuffle-workflow.png
+│   ├── virustotal-detection.png
+│   ├── abuseipdb-enrichment.png
+│   └── otx-match.png
+│
+└── docs
+    └── final-report.pdf
 ```
 
 ---
