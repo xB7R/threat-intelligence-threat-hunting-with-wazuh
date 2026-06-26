@@ -2,9 +2,9 @@
 
 # 🛡️ Wazuh XDR, SOAR & Threat Intelligence Lab
 
-### Threat Intelligence and Threat Hunting Project
+### Threat Intelligence & Threat Hunting Project
 
-Wazuh SIEM • XDR Detection • Shuffle SOAR • Threat Intelligence Integration
+Wazuh SIEM • XDR Detection • SOAR Automation • Threat Intelligence Integration
 
 ![Wazuh](https://img.shields.io/badge/Wazuh-SIEM-blue)
 ![XDR](https://img.shields.io/badge/XDR-Detection-red)
@@ -18,9 +18,30 @@ Wazuh SIEM • XDR Detection • Shuffle SOAR • Threat Intelligence Integratio
 
 # Overview
 
-This project demonstrates the implementation of a Security Operations Center (SOC) environment using Wazuh SIEM, XDR detection capabilities, Shuffle SOAR automation, and Threat Intelligence integrations.
+This project demonstrates the implementation of a Security Operations Center (SOC) environment using Wazuh SIEM, XDR detection capabilities, Shuffle SOAR automation, Active Response, and Threat Intelligence integrations.
 
-The environment was configured to collect logs from Windows Server 2022, Bodhi Linux, and IDS/Firewall systems. Security events were detected using custom Wazuh rules, automatically responded to using Active Response and Shuffle playbooks, and enriched using external Threat Intelligence sources.
+The environment was configured to collect and analyze security events from Windows Server 2022, Bodhi Linux, and pfSense Firewall systems. Security incidents were detected using custom Wazuh rules, automatically responded to using Active Response and Shuffle playbooks, and enriched using external Threat Intelligence platforms.
+
+The project simulates real-world SOC operations including threat detection, incident investigation, containment, automated response, and threat intelligence enrichment.
+
+---
+
+# Table of Contents
+
+- Overview
+- Lab Environment
+- Technologies Used
+- SOC Architecture
+- Security Operations Workflow
+- Task 1 – Wazuh Configuration & Event Validation
+- Task 2 – XDR Detection & Automated Response
+- Task 3 – SOAR Automation with Shuffle
+- Task 4 – Threat Intelligence Integration
+- Threat Intelligence Sources
+- Key Results
+- Skills Demonstrated
+- Screenshots
+- Author
 
 ---
 
@@ -34,220 +55,217 @@ The environment was configured to collect logs from Windows Server 2022, Bodhi L
 | Windows Server 2022 | Endpoint Monitoring |
 | Bodhi Linux | Linux Endpoint |
 | Kali Linux | Attack Simulation |
+| pfSense Firewall | Firewall & Syslog Source |
 | Shuffle | SOAR Platform |
-| Suricata IDS | Network Detection |
 
 ---
 
-## Technologies Used
+# Technologies Used
+
+## Security Monitoring
 
 - Wazuh SIEM
-- OpenSearch
-- Filebeat
+- Custom Wazuh Rules
+- Active Response
+
+## Operating Systems
+
 - Windows Server 2022
 - Bodhi Linux
 - Kali Linux
-- Suricata IDS
-- Shuffle SOAR
+
+## Network Security
+
+- pfSense Firewall
+- Syslog Monitoring
+
+## SOAR
+
+- Shuffle
+- Python Automation
+
+## Threat Intelligence
+
 - VirusTotal
 - AbuseIPDB
 - AlienVault OTX
-- Active Response
+
+## Scripting & Automation
+
 - PowerShell
-- Bash Scripting
+- Bash
+- Python
 
 ---
 
-# Architecture
+# SOC Architecture
 
 ```text
-Kali Linux
-     │
-     ▼
-Windows Server / Bodhi Linux
-     │
-     ▼
-Suricata IDS
-     │
-     ▼
-Wazuh Manager
-     │
- ┌───┼───────────────┐
- ▼   ▼               ▼
-XDR Threat Intel   Active Response
-     │
-     ▼
-Shuffle SOAR
-     │
-     ▼
-Automated Containment
+┌─────────────────────────────────────────┐
+│               Endpoints                 │
+│  Windows Server 2022 • Bodhi Linux      │
+└─────────────────────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────┐
+│          Network Security Layer         │
+│            pfSense Firewall             │
+└─────────────────────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────┐
+│            Log Collection               │
+│     Windows • Linux • Firewall Logs     │
+└─────────────────────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────┐
+│              Wazuh SIEM                 │
+│  Correlation • Detection • Monitoring   │
+└─────────────────────────────────────────┘
+                    │
+     ┌──────────────┼──────────────┐
+     ▼              ▼              ▼
+┌─────────┐  ┌─────────────┐  ┌───────────┐
+│   XDR   │  │Threat Intel │  │Active Resp│
+└─────────┘  └─────────────┘  └───────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────┐
+│             Shuffle SOAR                │
+│ Account Disable • Notifications         │
+│ Automated Incident Response             │
+└─────────────────────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────┐
+│ Detection → Analysis → Response         │
+│ Continuous Security Monitoring          │
+└─────────────────────────────────────────┘
+```
+
+---
+
+# Security Operations Workflow
+
+```text
+Data Collection
+      │
+      ▼
+Detection
+      │
+      ▼
+Analysis
+      │
+      ▼
+Response
+      │
+      ▼
+Continuous Monitoring
 ```
 
 ---
 
 # Task 1 – Wazuh Configuration & Event Validation
 
-## Objectives
+## Objective
 
-- Deploy Wazuh SIEM
-- Integrate Windows Server 2022
-- Integrate Bodhi Linux
-- Integrate Suricata IDS
-- Validate centralized log collection
+Deploy and configure Wazuh SIEM for centralized log collection and monitoring.
 
 ---
 
-## Integrated Log Sources
+## Integrated Systems
 
 ### Windows Server 2022
 
 - Wazuh Agent Installed
-- Security Events Collected
-- Event Logs Forwarded
+- Security Events Monitored
+- Microsoft Defender Events Collected
 
 ### Bodhi Linux
 
 - Wazuh Agent Installed
-- Syslog Collection Enabled
-- Authentication Events Monitored
+- Authentication Logs Collected
+- System Activity Monitored
 
-### Suricata IDS
+### pfSense Firewall
 
 - Syslog Forwarding Enabled
-- Alerts Collected by Wazuh
+- Firewall Logs Collected
+- Network Events Forwarded to Wazuh
 
 ---
 
 ## Validation Results
 
-| Validation | Status |
-|------------|---------|
-| Windows Logs | ✅ |
-| Linux Logs | ✅ |
-| Suricata Alerts | ✅ |
-| Event Collection | ✅ |
-| Kali Attack Visibility | ✅ |
+| Validation Item | Status |
+|----------------|---------|
+| Windows Logs Collection | ✅ |
+| Linux Logs Collection | ✅ |
+| pfSense Log Collection | ✅ |
+| Event Correlation | ✅ |
+| Centralized Monitoring | ✅ |
 
 ---
 
 # Task 2 – XDR Detection & Automated Response
 
-## Attack 1 – SMB Brute Force
+## Objective
 
-### Detection Rule
-
-Rule ID:
-
-```text
-100100
-```
-
-Description:
-
-```text
-Custom: SMB Brute Force Detected
-```
-
-### Attack Simulation
-
-Kali Linux generated multiple failed SMB login attempts against Windows Server 2022.
-
-### Automated Response
-
-```text
-block-ip.sh
-```
-
-### Result
-
-- Attacker IP detected
-- IP automatically blocked
-- Active Response executed successfully
+Develop custom detection rules and automated responses to identify and contain suspicious activities.
 
 ---
 
-## Attack 2 – Linux Privilege Escalation
+## Detection Engineering
 
-### Detection Rules
+### Brute Force Detection
 
-```text
-100101
-100102
-```
+Custom rules were created to detect repeated authentication failures.
 
-### Attack Simulation
+### Privilege Escalation Detection
 
-A new Linux user was created and added to the sudo group.
+Custom rules monitored changes to privileged groups and administrative accounts.
 
-### Automated Response
+### Malware Detection
 
-```text
-disable-account
-```
-
-### Result
-
-- User creation detected
-- Privilege escalation detected
-- Account automatically locked
+Microsoft Defender and Wazuh generated alerts for suspicious files and malicious activity.
 
 ---
 
-## Attack 3 – Malware Detection
+## Active Response
 
-### Detection Rule
+Automated actions included:
 
-```text
-100150
-```
-
-Description:
-
-```text
-XDR: Malware detected on Windows endpoint by Microsoft Defender
-```
-
-### Attack Simulation
-
-EICAR malware test file executed on Windows Server.
-
-### Automated Response
-
-Microsoft Defender remediation.
-
-### Result
-
-- Malware detected
-- Alert generated
-- File quarantined automatically
+- Blocking malicious IP addresses
+- Disabling suspicious user accounts
+- Removing detected threats
+- Generating high-priority alerts
 
 ---
 
-# Task 3 – SOAR Automation Using Shuffle
+# Task 3 – SOAR Automation with Shuffle
 
 ## Objective
 
-Implement Security Orchestration, Automation and Response (SOAR) using Shuffle.
+Integrate Wazuh with Shuffle SOAR to automate incident response workflows.
 
 ---
 
 ## Detection Rule
 
-Rule ID:
-
 ```text
-100601
+Rule ID: 100601
 ```
 
 Description:
 
 ```text
-Custom: Privilege Escalation - Administrators Group Modified
+Privilege Escalation – Administrators Group Modified
 ```
 
 ---
 
-## Workflow
+## Playbook Workflow
 
 ```text
 Wazuh Alert
@@ -270,67 +288,51 @@ Email Notification
 
 ---
 
-## Automated Actions
+## Automated Response
 
-### User Account Disablement
+The playbook automatically:
 
-Shuffle receives alerts from Wazuh and automatically disables suspicious user accounts through SSH.
-
-### Email Notification
-
-SOC analysts receive automatic incident notifications containing:
-
-- Rule ID
-- Severity
-- Agent Name
-- Username
-- Action Taken
+- Receives Wazuh alerts
+- Evaluates alert conditions
+- Executes a Python response script
+- Disables suspicious user accounts
+- Sends email notifications
+- Logs response actions
 
 ---
 
 ## Validation
 
-### Attack Simulation
+A test account was added to the Windows Administrators group.
 
-```powershell
-net user SecOpsTest2026 P@ssw0rd123! /add
-
-net localgroup Administrators SecOpsTest2026 /add
-```
-
-### Result
-
-```powershell
-Get-LocalUser -Name "SecOpsTest2026"
-```
-
-Account Status:
+The alert triggered:
 
 ```text
-Disabled = False
+Rule ID 100601
 ```
 
-After SOAR Response:
+Shuffle successfully:
 
-```text
-Disabled = True
-```
-
-✅ Automated containment successful
+- Detected the event
+- Executed the response workflow
+- Disabled the suspicious account
+- Sent notification alerts
 
 ---
 
 # Task 4 – Threat Intelligence Integration
 
+## Objective
+
+Enhance detection capabilities using external Threat Intelligence feeds.
+
+---
+
 ## VirusTotal Integration
 
 ### Purpose
 
-File reputation analysis.
-
-### Integration
-
-Wazuh FIM sends file hashes to VirusTotal.
+File reputation analysis and malware validation.
 
 ### Rule IDs
 
@@ -340,16 +342,18 @@ Wazuh FIM sends file hashes to VirusTotal.
 100093
 ```
 
-### Test
+### Test Scenario
 
-EICAR Test File
+- EICAR Test File Downloaded
+- Wazuh FIM Detected File Creation
+- VirusTotal Query Executed
 
 ### Result
 
-- VirusTotal detected malicious file
-- Wazuh generated alert
-- remove-threat.exe executed
-- File removed automatically
+- File Identified as Malicious
+- Threat Detected
+- Active Response Triggered
+- File Removed Automatically
 
 ---
 
@@ -367,18 +371,16 @@ IP Reputation Enrichment
 100004
 ```
 
-### Test
+### Test Scenario
 
-```text
-136.228.161.66
-```
+Failed SSH authentication events were generated using a public IP address.
 
 ### Result
 
-- SSH Authentication Failure Detected
-- AbuseIPDB Lookup Performed
-- Confidence Score Returned
-- Alert Enriched Successfully
+- Suspicious IP Detected
+- AbuseIPDB Lookup Executed
+- Reputation Data Returned
+- Alert Enriched with Confidence Score
 
 ---
 
@@ -386,7 +388,7 @@ IP Reputation Enrichment
 
 ### Purpose
 
-Threat Intelligence Domain Lookup
+IOC and Domain Reputation Analysis
 
 ### Rule IDs
 
@@ -396,7 +398,9 @@ Threat Intelligence Domain Lookup
 100301
 ```
 
-### Test Domain
+### Test Scenario
+
+A suspicious domain indicator was generated.
 
 ```text
 shmrwqwmrn.biz
@@ -404,47 +408,34 @@ shmrwqwmrn.biz
 
 ### Result
 
-- Domain Detected
+- Domain Detection Triggered
 - OTX Lookup Executed
-- Threat Match Returned
+- Threat Intelligence Match Returned
 - High Severity Alert Generated
 
 ---
 
 # Threat Intelligence Sources
 
-## VirusTotal
-
-Provides:
-
-- File Hash Reputation
-- URL Analysis
-- Domain Intelligence
-- Malware Analysis
-- MITRE ATT&CK Mapping
+| Source | Purpose |
+|----------|----------|
+| VirusTotal | File Reputation Analysis |
+| AbuseIPDB | IP Reputation Analysis |
+| AlienVault OTX | IOC and Domain Intelligence |
 
 ---
 
-## AbuseIPDB
+# SOC Roles
 
-Provides:
-
-- IP Reputation
-- Abuse Confidence Scores
-- Historical Reports
-- Geolocation Data
-
----
-
-## AlienVault OTX
-
-Provides:
-
-- Threat Indicators
-- Malicious Domains
-- Malicious IPs
-- IOC Enrichment
-- Threat Pulses
+| Role | Responsibility |
+|---------|---------|
+| SOC Analyst L1 | Alert Monitoring and Initial Triage |
+| SOC Analyst L2 | Incident Investigation and Correlation |
+| SOC Analyst L3 | Advanced Threat Hunting and Detection Engineering |
+| Threat Hunter | Proactive Threat Hunting and IOC Analysis |
+| Incident Responder | Containment and Remediation |
+| Threat Intelligence Analyst | Threat Intelligence Management |
+| SOC Manager | SOC Oversight and Reporting |
 
 ---
 
@@ -455,14 +446,15 @@ Provides:
 | Wazuh Deployment | ✅ |
 | Windows Integration | ✅ |
 | Linux Integration | ✅ |
-| Suricata Integration | ✅ |
-| Event Validation | ✅ |
+| pfSense Integration | ✅ |
+| Custom Detection Rules | ✅ |
 | XDR Detection | ✅ |
 | Active Response | ✅ |
-| Shuffle SOAR | ✅ |
+| Shuffle SOAR Automation | ✅ |
 | VirusTotal Integration | ✅ |
 | AbuseIPDB Integration | ✅ |
 | AlienVault OTX Integration | ✅ |
+| Threat Intelligence Enrichment | ✅ |
 
 ---
 
@@ -471,64 +463,68 @@ Provides:
 ## SIEM
 
 - Wazuh Deployment
-- Log Management
+- Log Analysis
 - Event Correlation
 - Detection Engineering
+- Alert Triage
 
 ## XDR
 
-- Threat Detection
 - Endpoint Monitoring
-- Automated Response
+- Threat Detection
+- Active Response
+- Incident Investigation
 
 ## SOAR
 
-- Shuffle Playbooks
-- Webhooks
-- Incident Automation
+- Shuffle Automation
+- Webhook Integration
+- Automated Response Playbooks
+- Incident Workflow Automation
 
 ## Threat Intelligence
 
-- VirusTotal
-- AbuseIPDB
-- AlienVault OTX
+- VirusTotal Integration
+- AbuseIPDB Integration
+- AlienVault OTX Integration
 - IOC Analysis
+- Threat Enrichment
 
 ## Security Operations
 
-- Incident Detection
-- Alert Triage
-- Incident Response
 - Threat Hunting
+- Incident Response
+- Security Monitoring
+- Detection Engineering
+- SOC Operations
 
 ---
 
 # Screenshots
 
-Add screenshots for:
-
 ```text
 screenshots/
 │
+├── soc-architecture.png
 ├── wazuh-dashboard.png
 ├── windows-agent.png
 ├── bodhi-agent.png
-├── suricata-integration.png
-├── smb-bruteforce-alert.png
-├── block-ip-response.png
+├── pfsense-syslog.png
+├── event-validation.png
 ├── privilege-escalation-alert.png
-├── disable-account-response.png
-├── malware-detection.png
-├── defender-remediation.png
 ├── shuffle-playbook.png
-├── shuffle-email-alert.png
+├── shuffle-response.png
+├── account-disabled.png
 ├── virustotal-detection.png
 ├── abuseipdb-enrichment.png
-└── otx-match.png
+├── otx-match.png
+└── threat-intelligence-dashboard.png
 ```
 
 ---
 
 # Author
 
-Cybersecurity Project – Threat Intelligence & Threat Hunting using Wazuh, XDR, SOAR and Threat Intelligence Integration.
+Threat Intelligence & Threat Hunting Project
+
+Implemented using Wazuh SIEM, XDR Detection, Active Response, Shuffle SOAR, VirusTotal, AbuseIPDB, AlienVault OTX, Windows Server 2022, Bodhi Linux, Kali Linux, and pfSense Firewall.
