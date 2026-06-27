@@ -258,19 +258,16 @@ wazuh-xdr-soar-threat-intelligence
 ├── README.md
 │
 ├── images
-│   ├── soc-architecture.png
-│   ├── wazuh-dashboard.png
-│   ├── agents-connected.png
-│   ├── pfsense-syslog.png
-│   ├── privilege-escalation-alert.png
-│   ├── account-disabled.png
-│   ├── shuffle-workflow.png
-│   ├── virustotal-detection.png
-│   ├── abuseipdb-enrichment.png
-│   └── otx-match.png
-│
-└── docs
-    └── final-report.pdf
+   ├── soc-architecture.png
+   ├── wazuh-dashboard.png
+   ├── agents-connected.png
+   ├── pfsense-syslog.png
+   ├── privilege-escalation-alert.png
+   ├── account-disabled.png
+   ├── shuffle-workflow.png
+   ├── virustotal-detection.png
+   ├── abuseipdb-enrichment.png
+   └── otx-match.png
 ```
 
 ---
