@@ -166,7 +166,7 @@ File reputation analysis and malware validation.
 - 87105
 - 100092
 
-![VirusTotal Detection](images/virustotal-detection.png)
+![VirusTotal Detection](images/virusTotal-detection.png)
 
 ---
 
