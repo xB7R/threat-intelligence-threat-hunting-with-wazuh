@@ -1,5 +1,5 @@
 <div align="center">
-
+.
 # 🛡️ Wazuh XDR, SOAR & Threat Intelligence Lab
 
 ### Threat Intelligence & Threat Hunting Project
